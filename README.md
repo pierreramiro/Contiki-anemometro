@@ -1,7 +1,7 @@
 # Contiki-anemometro
 Codigo anemometro en contiki-ng cc2650 launchpad-XL
 
-# Pasos para compilar y cubir un archivo al MCU cc2650
+## Pasos para compilar y cubir un archivo al MCU cc2650
 1. Crear una carpeta con el archivo .c (OJO deben tener el mismo nombre)
 
 2. Crear el archivo makefile el nombre del proyectodebe ser el mimso que 
