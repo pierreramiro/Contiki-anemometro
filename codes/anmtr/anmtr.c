@@ -4,9 +4,10 @@
 #include "dev/button-hal.h"
 #include "button-sensor.h"
 #include "dev/gpio-hal.h"
-#include "dev/spi.h"
 #include <stdio.h>
 #include <stdint.h>
+#include "ti/drivers/SPI.h"//Usar esta libreria para 16 bits
+//#include "dev/spi.h"//Quitar esta libreria usar la de 16 bits
 
 //Definimos pines
 //SPI selector
@@ -28,9 +29,7 @@
 #define LEDG_pin     IOID_7//pin verde
 
 static struct etimer tempo;//creamos el contador
-//const uint16_t address_data[9]={0xC6,0x46,0x20,0x53,0x1F,0x84,0x00,0x59,0x00};
-const uint8_t address_data[9]={0xC,0x4,0x2,0x5,0x1,0x8,0x0,0x5,0x0};
-spi_device_t *spi;
+uint16_t address_data[9]={0xC6,0x46,0x20,0x53,0x1F,0x84,0x00,0x59,0x00};
 
 PROCESS (medir_viento_process, "Medicion del viento");
 AUTOSTART_PROCESSES(&medir_viento_process);
@@ -52,23 +51,43 @@ PROCESS_THREAD(medir_viento_process,ev,data)
 
     gpio_hal_arch_pin_set_output(0,LEDR_pin);
     gpio_hal_arch_pin_set_output(0,LEDG_pin);
-    //Configuramos los parametros del SPI
-    spi->pin_spi_sck=  IOID_10;
-    spi->pin_spi_miso= IOID_8;
-    spi->pin_spi_miso= IOID_9;
-    spi->pin_spi_cs= CSB0_pin;
-    spi->spi_bit_rate=1000000;
-    spi->spi_pha =1;
-    spi->spi_pol=1;
-    spi->spi_controller=SPI_CONTROLLER_SPI0;   
     
+    //Configuramos los parametros del SPI
+    SPI_Handle      spi;
+    SPI_Params      spiParams;
+    SPI_Transaction spiTransaction;
+    //uint16_t        transmitBuffer[9];
+    //uint16_t        receiveBuffer[16];
+    bool            transferOK;
+    SPI_init();  // Initialize the SPI driver
+    SPI_Params_init(&spiParams);  // Initialize SPI parameters
+    spiParams.dataSize = 16;       // 16-bit data size
+    spiParams.transferMode        = SPI_MODE_BLOCKING;
+    spiParams.transferTimeout     = SPI_WAIT_FOREVER;//be careful with this
+    spiParams.transferCallbackFxn = NULL;
+    spiParams.mode                = SPI_MASTER;
+    spiParams.dataSize            = 16; //en bits
+    spiParams.frameFormat         = SPI_POL1_PHA1;
+    spiParams.bitRate             = 4000000; /* bitRate */
+    //spi->pin_spi_cs= CSB0_pin;
+    
+    spi = SPI_open(0, &spiParams);
+    if (spi == NULL) {
+        while (1);  // SPI_open() failed
+    }
+      
     //Iniciamos el proceso
     PROCESS_BEGIN();
     //Habilitamso el TDC1 para configurar
 
     //Enviamos los datos de configuracion
-    spi_acquire(spi);
-    spi_arch_transfer(spi,address_data,9,0,0,0);
+    spiTransaction.count = 9;
+    spiTransaction.txBuf = (void *)address_data;
+    transferOK = SPI_transfer(spi, &spiTransaction);
+    if (!transferOK) {
+    // Error in SPI or transfer already in progress.
+        while (1);
+    }
     etimer_set(&tempo,CLOCK_SECOND/2);
     printf("Terminamos de enviar el SPI. activamos modo stand by\n");
     gpio_hal_arch_toggle_pin(0,LEDG_pin);
