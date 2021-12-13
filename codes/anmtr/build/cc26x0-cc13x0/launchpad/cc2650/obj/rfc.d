@@ -1,0 +1,29 @@
+build/cc26x0-cc13x0/launchpad/cc2650/obj/rfc.o: \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rfc.c \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rfc.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_types.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_chip_def.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_memmap.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_rfc_pwr.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_rfc_dbell.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_common_cmd.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_mailbox.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_prop_cmd.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_fcfg1.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_adi_3_refsys.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_adi.h \
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rom.h
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rfc.c :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rfc.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_types.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_chip_def.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_memmap.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_rfc_pwr.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_rfc_dbell.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_common_cmd.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_mailbox.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rf_prop_cmd.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_fcfg1.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_adi_3_refsys.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/inc/hw_adi.h :
+ /home/pierre/contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware/driverlib/rom.h :
