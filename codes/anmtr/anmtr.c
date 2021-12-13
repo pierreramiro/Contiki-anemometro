@@ -28,7 +28,8 @@
 #define LEDG_pin     IOID_7//pin verde
 
 static struct etimer tempo;//creamos el contador
-const uint16_t address_data[9]={0xC6,0x46,0x20,0x53,0x1F,0x84,0x00,0x59,0x00};
+//const uint16_t address_data[9]={0xC6,0x46,0x20,0x53,0x1F,0x84,0x00,0x59,0x00};
+const uint8_t address_data[9]={0xC,0x4,0x2,0x5,0x1,0x8,0x0,0x5,0x0};
 spi_device_t *spi;
 
 PROCESS (medir_viento_process, "Medicion del viento");
@@ -67,7 +68,7 @@ PROCESS_THREAD(medir_viento_process,ev,data)
 
     //Enviamos los datos de configuracion
     spi_acquire(spi);
-    //spi_arch_transfer(spi,address_data,9,0,0,0);
+    spi_arch_transfer(spi,address_data,9,0,0,0);
     etimer_set(&tempo,CLOCK_SECOND/2);
     printf("Terminamos de enviar el SPI. activamos modo stand by\n");
     gpio_hal_arch_toggle_pin(0,LEDG_pin);
